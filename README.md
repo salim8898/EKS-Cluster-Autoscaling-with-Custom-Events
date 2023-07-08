@@ -16,7 +16,7 @@ This project demonstrates how to automatically scale an Amazon EKS cluster based
 
 3. Deploy the Lambda function using AWS SAM CLI:
    ```bash
-   sam deploy --guided
+   sam deploy --guided --parameter-overrides Python/lambda_function.py
    ```
 
 4. Follow the instructions provided by AWS SAM CLI to configure the deployment.
