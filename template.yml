@@ -1,31 +1,31 @@
-# template.yaml
-
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
+
+Parameters:
+  LambdaCodeFile:
+    Type: String
+    Default: 'lambda_function.py'
 
 Resources:
   MyScalingLambdaFunction:
     Type: 'AWS::Serverless::Function'
     Properties:
-      CodeUri: my_scaling_function/
+      CodeUri: .
       Handler: lambda_function.lambda_handler
       Runtime: python3.8
       Policies:
         - CloudWatchFullAccess
         - AmazonEKSFargateClusterPolicy
         - AmazonEKSClusterPolicy
-
-  EKSEventRule:
-    Type: 'AWS::Events::Rule'
-    Properties:
-      EventPattern:
-        source:
-          - aws.eks
-        detail-type:
-          - EKS Cluster Event
-        detail:
-          clusterName:
-            - 'your-eks-cluster'
-      Targets:
-        - Arn: !GetAtt MyScalingLambdaFunction.Arn
-          Id: ScalingLambdaTarget
+      Events:
+        EKSEvent:
+          Type: CloudWatchEvent
+          Properties:
+            Pattern:
+              source:
+                - aws.eks
+              detail-type:
+                - EKS Cluster Event
+              detail:
+                clusterName:
+                  - 'your-eks-cluster'
