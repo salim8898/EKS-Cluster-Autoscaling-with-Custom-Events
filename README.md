@@ -1,6 +1,6 @@
-# 🚀 Scaling EKS Cluster with Custom Events
+# 🚀 AutoScaler for Amazon EKS
 
-This project demonstrates how to automatically scale an Amazon EKS cluster based on custom events using AWS Lambda and EventBridge. By monitoring custom metrics and adjusting the desired node count of the EKS cluster, this solution enables seamless scaling to handle varying workload demands.
+This project demonstrates how to automatically scale an Amazon EKS cluster based on custom events using AWS Lambda, EventBridge, and AWS SAM. By monitoring custom metrics and adjusting the desired node count of the EKS cluster, this solution enables seamless scaling to handle varying workload demands.
 
 ## Usage
 
@@ -11,7 +11,7 @@ This project demonstrates how to automatically scale an Amazon EKS cluster based
 
 2. Navigate to the project directory:
    ```bash
-   cd scaling-eks-cluster
+   cd auto-scaler-for-eks
    ```
 
 3. Deploy the Lambda function using AWS SAM CLI:
@@ -35,11 +35,20 @@ This project demonstrates how to automatically scale an Amazon EKS cluster based
 
 - **Flexible Customization**: The project can be customized to monitor specific custom metrics and implement scaling strategies tailored to your application's requirements.
 
+## Services Used
+
+This project leverages several AWS services to deploy and automate the scaling of an Amazon EKS cluster. Here's an overview of the key services used:
+
+- **AWS Lambda**: Serverless compute service used to execute the scaling logic based on custom events from the EKS cluster.
+- **AWS SAM**: Framework for building serverless applications used to define and deploy the Lambda function as an AWS Serverless Application.
+- **Amazon EKS**: Managed Kubernetes service used to run and manage the EKS cluster, integrating with the scaling solution.
+- **Amazon EventBridge**: Serverless event bus service used to capture custom events from the EKS cluster and trigger the Lambda function.
+- **Amazon CloudWatch**: Monitoring and observability service used to collect and store custom metric data from the EKS cluster.
+
+These services work together to create an automated and scalable solution for managing an Amazon EKS cluster. By combining the power of serverless computing, event-driven architecture, and Kubernetes orchestration, this project enables efficient and cost-effective scaling of EKS clusters based on custom events and metrics.
+
 ---
 
 Feel free to explore the code and customize it according to your specific needs. If you encounter any issues or have suggestions for improvements, please don't hesitate to open an issue or submit a pull request.
 
 Let's scale your EKS clusters effortlessly! 🚀
-```
-
-Feel free to modify the content or add more sections to suit your project's specific requirements.
